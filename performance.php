@@ -29,30 +29,30 @@ class Test
 
 $test = new Test();
 
-echo 'fetch section 100' . PHP_EOL . PHP_EOL;
+echo 'fetch section 1' . PHP_EOL . PHP_EOL;
 
-//$test->run('db', function () use ($sourceDb) {
-//    $sourceDb->fetch(\LinguaLeo\Fabric\Fabric::getVersion());
-//}, 100);
-//
-//$test->run('guzzle no cache', function () use ($sourceGuzzle) {
-//    $sourceGuzzle->fetch(\LinguaLeo\Fabric\Fabric::getVersion());
-//}, 100);
-//
-//$test->run('guzzle with cache', function () use ($sourceGuzzleWithCache) {
-//    $sourceGuzzleWithCache->fetch(\LinguaLeo\Fabric\Fabric::getVersion());
-//}, 100);
+$test->run('db', function () use ($sourceDb) {
+    $sourceDb->fetch(\LinguaLeo\Fabric\Fabric::getVersion());
+}, 1);
+
+$test->run('guzzle no cache', function () use ($sourceGuzzle) {
+    $sourceGuzzle->fetch(\LinguaLeo\Fabric\Fabric::getVersion());
+}, 1);
+
+$test->run('guzzle with cache', function () use ($sourceGuzzleWithCache) {
+    $sourceGuzzleWithCache->fetch(\LinguaLeo\Fabric\Fabric::getVersion());
+}, 1);
 
 $test->run('curl', function () use ($sourceCurl) {
     $sourceCurl->fetch(\LinguaLeo\Fabric\Fabric::getVersion());
-}, 100);
+}, 1);
 
-//$test->run('file_get_contents', function () use ($souceSimple) {
-//    $souceSimple->fetch(\LinguaLeo\Fabric\Fabric::getVersion());
-//}, 100);
-//
-//echo 'resolve section 1000' . PHP_EOL . PHP_EOL;
-//$data = $sourceDb->fetch(\LinguaLeo\Fabric\Fabric::getVersion());
-//$test->run('resolve', function () use ($data) {
-//    $data->resolveGroupForTable('users.word', 1);
-//}, 1000);
+$test->run('file_get_contents', function () use ($souceSimple) {
+    $souceSimple->fetch(\LinguaLeo\Fabric\Fabric::getVersion());
+}, 1);
+
+echo 'resolve section 1000' . PHP_EOL . PHP_EOL;
+$data = $sourceDb->fetch(\LinguaLeo\Fabric\Fabric::getVersion());
+$test->run('resolve', function () use ($data) {
+    $data->resolveGroupForTable('linguadb.user_word', rand(1, PHP_INT_MAX));
+}, 1000);
